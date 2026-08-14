@@ -97,6 +97,7 @@ bridge/                    UDP heartbeat -> MCU UART forwarder (Linux side)
 host/                      Heartbeat sender (laptop side)
 scripts/                   Board bring-up, diagnostics, Wi-Fi, GUI, udev
 tests/                     Protocol verification (runs anywhere, no hardware)
+tools/                     Mock servo bus - build arm/XR code with no robot
 docs/                      Access runbooks and the interlock design
 ml/                        MolmoAct2 canary training evidence
 teleop/                    ** NOT YET IN THIS REPO — copy from the board **
@@ -128,6 +129,19 @@ ssh root@Mira.local
 
 If that fails, `docs/UNOQ-ACCESS-HUMAN.md` walks through it in plain language, and
 `docs/UNOQ-ACCESS-AGENT.md` has the full diagnostic tree.
+
+### No arm? You can still build the XR teleop feature.
+
+`tools/mock_arm.py` exposes a virtual serial port speaking the real Feetech
+protocol, so the whole phone -> IK -> servo-bus chain runs on a laptop with
+nothing plugged in. Robot code points at it unchanged.
+
+```bash
+python3 tools/mock_arm.py --self-test   # no serial port needed, works on Windows
+python3 tools/mock_arm.py               # virtual port, macOS/Linux/WSL
+```
+
+Full walkthrough: `docs/XR-TELEOP-NO-HARDWARE.md`
 
 Verify the wire protocol without any hardware:
 
