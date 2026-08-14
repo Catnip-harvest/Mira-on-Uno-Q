@@ -1,0 +1,30 @@
+# Mira interlock bridge — install on the UNO Q as /etc/systemd/system/mira-bridge.service
+#
+#   sudo systemctl stop arduino-router && sudo systemctl mask arduino-router
+#   sudo cp bridge/mira-bridge.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now mira-bridge
+#
+# arduino-router is masked, not just stopped: it holds /dev/ttyHS1 open and would
+# retake it on the next boot, leaving the bridge unable to reach the MCU.
+#
+# NOTE ON Restart=: the bridge restarting is harmless because it cannot fabricate
+# heartbeats — a restart simply means the MCU hears silence until the laptop's
+# frames start flowing through again, which is the correct failure direction.
+
+[Unit]
+Description=Mira - interlock bridge (laptop UDP heartbeat -> STM32 UART)
+After=network-online.target
+Wants=network-online.target
+Conflicts=arduino-router.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/mira/bridge/mira_bridge.py \
+          --serial /dev/ttyHS1 --listen 0.0.0.0:9000 --status-port 9001
+Restart=on-failure
+RestartSec=2
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

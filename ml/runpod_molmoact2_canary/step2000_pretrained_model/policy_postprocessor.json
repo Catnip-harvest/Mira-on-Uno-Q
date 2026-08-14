@@ -1,0 +1,43 @@
+{
+  "name": "policy_postprocessor",
+  "steps": [
+    {
+      "registry_name": "molmoact2_clamp_action",
+      "config": {}
+    },
+    {
+      "registry_name": "molmoact2_masked_unnormalizer",
+      "config": {
+        "eps": 1e-08,
+        "features": {
+          "action": {
+            "type": "ACTION",
+            "shape": [
+              6
+            ]
+          }
+        },
+        "norm_map": {
+          "VISUAL": "IDENTITY",
+          "STATE": "QUANTILES",
+          "ACTION": "QUANTILES"
+        }
+      },
+      "state_file": "policy_postprocessor_step_1_molmoact2_masked_unnormalizer.safetensors"
+    },
+    {
+      "registry_name": "molmoact2_action_frame_transform",
+      "config": {
+        "joint_signs": null,
+        "joint_offsets": null
+      }
+    },
+    {
+      "registry_name": "device_processor",
+      "config": {
+        "device": "cpu",
+        "float_dtype": null
+      }
+    }
+  ]
+}

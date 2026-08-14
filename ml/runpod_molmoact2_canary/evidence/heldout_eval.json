@@ -1,0 +1,71 @@
+{
+  "metric": "deterministic paired held-out MolmoAct2 flow-matching loss (lower is better)",
+  "warning": "Offline imitation loss is a canary metric, not proof of real-robot success or out-of-distribution generalization.",
+  "held_out_episode_ids": [
+    9,
+    19,
+    29,
+    39,
+    49,
+    59,
+    69,
+    79,
+    89,
+    99,
+    109,
+    119,
+    129,
+    139,
+    149
+  ],
+  "sample_indices_sha256_note": "Indices are deterministic evenly spaced positions within the held-out-only dataset.",
+  "requested_samples": 120,
+  "actual_samples": 120,
+  "seed": 20260813,
+  "results": [
+    {
+      "label": "base",
+      "checkpoint": "BASE:/workspace/mira_molmoact2_training/outputs/mira-so101-molmoact2-canary/checkpoints/000250/pretrained_model",
+      "batches": 15,
+      "samples": 120,
+      "mean_flow_matching_loss": 0.35377604166666665,
+      "std_batch_loss": 0.06759380337556324,
+      "min_batch_loss": 0.236328125,
+      "max_batch_loss": 0.5234375,
+      "improvement_vs_first_percent": 0.0
+    },
+    {
+      "label": "step250",
+      "checkpoint": "/workspace/mira_molmoact2_training/outputs/mira-so101-molmoact2-canary/checkpoints/000250/pretrained_model",
+      "batches": 15,
+      "samples": 120,
+      "mean_flow_matching_loss": 0.13671875,
+      "std_batch_loss": 0.03257632560853042,
+      "min_batch_loss": 0.08251953125,
+      "max_batch_loss": 0.2080078125,
+      "improvement_vs_first_percent": 61.35443503864556
+    },
+    {
+      "label": "step1000",
+      "checkpoint": "/workspace/mira_molmoact2_training/outputs/mira-so101-molmoact2-canary/checkpoints/001000/pretrained_model",
+      "batches": 15,
+      "samples": 120,
+      "mean_flow_matching_loss": 0.08416341145833334,
+      "std_batch_loss": 0.025398991176432392,
+      "min_batch_loss": 0.0498046875,
+      "max_batch_loss": 0.12353515625,
+      "improvement_vs_first_percent": 76.20997423629002
+    },
+    {
+      "label": "step2000",
+      "checkpoint": "/workspace/mira_molmoact2_training/outputs/mira-so101-molmoact2-canary/checkpoints/002000/pretrained_model",
+      "batches": 15,
+      "samples": 120,
+      "mean_flow_matching_loss": 0.07171223958333334,
+      "std_batch_loss": 0.024601892480877952,
+      "min_batch_loss": 0.038818359375,
+      "max_batch_loss": 0.111328125,
+      "improvement_vs_first_percent": 79.72948104527052
+    }
+  ]
+}

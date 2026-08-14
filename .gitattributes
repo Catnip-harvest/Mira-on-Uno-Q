@@ -1,0 +1,17 @@
+# Shell scripts and Python run on the board (Linux). CRLF breaks them with
+# "\r: command not found", so force LF regardless of who commits from Windows.
+* text=auto eol=lf
+*.sh   text eol=lf
+*.py   text eol=lf
+*.ino  text eol=lf
+*.md   text eol=lf
+*.json text eol=lf
+*.service text eol=lf
+
+# PowerShell runs on Windows; leave it CRLF.
+*.ps1  text eol=crlf
+
+# Never touch binaries.
+*.safetensors binary
+*.png binary
+*.jpg binary

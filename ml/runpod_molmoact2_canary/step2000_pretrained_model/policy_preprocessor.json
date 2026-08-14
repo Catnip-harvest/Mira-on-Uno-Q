@@ -1,0 +1,100 @@
+{
+  "name": "policy_preprocessor",
+  "steps": [
+    {
+      "registry_name": "rename_observations_processor",
+      "config": {
+        "rename_map": {}
+      }
+    },
+    {
+      "registry_name": "to_batch_processor",
+      "config": {}
+    },
+    {
+      "registry_name": "molmoact2_state_frame_transform",
+      "config": {
+        "joint_signs": null,
+        "joint_offsets": null
+      }
+    },
+    {
+      "registry_name": "molmoact2_masked_normalizer",
+      "config": {
+        "eps": 1e-08,
+        "features": {
+          "observation.images.camera1": {
+            "type": "VISUAL",
+            "shape": [
+              3,
+              240,
+              320
+            ]
+          },
+          "observation.images.camera2": {
+            "type": "VISUAL",
+            "shape": [
+              3,
+              240,
+              320
+            ]
+          },
+          "observation.state": {
+            "type": "STATE",
+            "shape": [
+              6
+            ]
+          },
+          "action": {
+            "type": "ACTION",
+            "shape": [
+              6
+            ]
+          }
+        },
+        "norm_map": {
+          "VISUAL": "IDENTITY",
+          "STATE": "QUANTILES",
+          "ACTION": "QUANTILES"
+        }
+      },
+      "state_file": "policy_preprocessor_step_3_molmoact2_masked_normalizer.safetensors"
+    },
+    {
+      "registry_name": "molmoact2_clamp_normalized",
+      "config": {}
+    },
+    {
+      "registry_name": "molmoact2_pack_inputs",
+      "config": {
+        "checkpoint_path": "allenai/MolmoAct2-SO100_101",
+        "checkpoint_revision": null,
+        "checkpoint_force_download": false,
+        "action_mode": "continuous",
+        "discrete_action_tokenizer": "allenai/MolmoAct2-FAST-Tokenizer",
+        "image_keys": [
+          "observation.images.camera1",
+          "observation.images.camera2"
+        ],
+        "allow_image_key_fallback": false,
+        "setup_type": "single SO-101 robot arm with external and wrist cameras",
+        "control_mode": "absolute joint pose",
+        "normalize_language": true,
+        "add_setup_tokens": true,
+        "add_control_tokens": true,
+        "num_state_tokens": 256,
+        "max_sequence_length": null,
+        "chunk_size": 10,
+        "max_action_dim": 32,
+        "env_action_dim": 6
+      }
+    },
+    {
+      "registry_name": "device_processor",
+      "config": {
+        "device": "cuda",
+        "float_dtype": null
+      }
+    }
+  ]
+}
