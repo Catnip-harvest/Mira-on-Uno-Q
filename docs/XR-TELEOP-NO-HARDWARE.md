@@ -122,34 +122,75 @@ When the mock loop works and the arm is available:
 
 ---
 
-## HTTPS: required, and why you must NOT use a tunnel
+## Phones: Android only on this team
+
+### ⚠ Install ARCore on every phone BEFORE demo day
+
+WebXR AR on Android requires **Google Play Services for AR** (ARCore) installed
+and enabled, on an **ARCore-supported device**. It is a free Play Store install
+— but it needs internet **once**, and there is no internet at the venue.
+
+Do this now, on every phone that might be used:
+
+1. Check the device is on Google's [ARCore supported devices list](https://developers.google.com/ar/devices)
+2. Install **Google Play Services for AR** from the Play Store
+3. Open the XR page once while still online and confirm the AR session starts
+
+**If you arrive at HCMUS with a phone that has no ARCore, the XR demo is dead
+and cannot be fixed on site.** Test at least two phones so there is a spare.
+
+### HTTPS is required — and do NOT use a tunnel
 
 WebXR only runs in a **secure context**. `localhost` is exempt; a LAN address is
-not. Your phone opening `http://192.168.x.x:4443` will be refused by the browser
-— Apple in particular blocks WebXR on plain HTTP outright.
+not. `http://192.168.x.x:4443` will be refused.
 
-**Do not solve this with ngrok or a Cloudflare tunnel.** Those need internet, and
-the entire product claim is that Mira works offline. A tunnel on demo day is a
-single point of failure on someone else's infrastructure.
+**Do not solve this with ngrok or Cloudflare.** They need internet, and the whole
+product claim is offline operation. A tunnel is a dependency on someone else's
+infrastructure in a room where the Wi-Fi is already a risk.
 
-Use a self-signed certificate instead. Entirely local:
+Two ways to get a secure context, both fully offline:
+
+#### While developing — USB port forwarding, no certificates at all
+
+Chrome DevTools can forward a port over the USB cable so the phone sees the
+server as `localhost`, which **is** a secure context. Nothing to install, no
+certificates, no warnings.
+
+1. Enable Developer options and USB debugging on the phone
+2. Plug the phone into the laptop
+3. On the laptop open `chrome://inspect/#devices` -> **Port forwarding**
+4. Add `4443` -> `localhost:4443`
+5. On the phone browse to `http://localhost:4443`
+
+This is the fastest path for the person building the feature.
+
+#### For the demo — a self-signed certificate on the LAN
+
+The phone must be untethered on stage, so port forwarding is out.
 
 ```bash
-brew install mkcert          # macOS;  apt install mkcert on Linux
 mkcert -install
 mkcert -cert-file cert.pem -key-file key.pem <server-lan-ip> localhost 127.0.0.1
 ```
 
 `teleop` picks up `cert.pem` and `key.pem` from the server directory
-automatically. Then install mkcert's root CA on the phone so it trusts the
-certificate — otherwise the phone shows a warning and WebXR still refuses.
+automatically. Then install mkcert's root CA on the Android phone:
+
+- Copy `rootCA.pem` to the phone (`mkcert -CAROOT` prints where it lives)
+- Settings -> Security -> Encryption & credentials -> **Install a certificate**
+  -> CA certificate
+- Android warns you; that is expected for a self-signed CA
+
+Without the CA installed the phone shows a certificate warning and **WebXR still
+refuses**, even if you tap through to the page.
 
 Note the port is **4443**, not 5000.
 
-### iPhone
+### Chrome flag: not a reliable path on Android
 
-Safari's WebXR support is limited. Install **XR Browser** or **WebXR Viewer**
-from the App Store and open the URL there.
+`unsafely-treat-insecure-origin-as-secure` exists, but on Android the
+command-line form requires a rooted device or dev mode. Do not build the demo
+around it. Use USB forwarding for development and a certificate for the demo.
 
 ---
 
