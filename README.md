@@ -118,6 +118,12 @@ enabled.
 
 ---
 
+## Joining the project
+
+- **`CONTRIBUTING.md`** — setup per track: XR teleop, LeLab datasets/training, the board
+- **`docs/TESTING.md`** — the four-tier testing protocol. Do not skip a tier
+- **`docs/XR-TELEOP-NO-HARDWARE.md`** — build the phone-control feature with no robot
+
 ## Quick start
 
 Everything below assumes the board is reachable. It advertises itself over mDNS as
