@@ -119,3 +119,51 @@ When the mock loop works and the arm is available:
    does not stop the arm — the servos hold torque and go rigid.
 3. **Short and slow.** `--duration 20`, low speed, unloaded, nothing near it.
 4. Only then, longer runs.
+
+---
+
+## HTTPS: required, and why you must NOT use a tunnel
+
+WebXR only runs in a **secure context**. `localhost` is exempt; a LAN address is
+not. Your phone opening `http://192.168.x.x:4443` will be refused by the browser
+— Apple in particular blocks WebXR on plain HTTP outright.
+
+**Do not solve this with ngrok or a Cloudflare tunnel.** Those need internet, and
+the entire product claim is that Mira works offline. A tunnel on demo day is a
+single point of failure on someone else's infrastructure.
+
+Use a self-signed certificate instead. Entirely local:
+
+```bash
+brew install mkcert          # macOS;  apt install mkcert on Linux
+mkcert -install
+mkcert -cert-file cert.pem -key-file key.pem <server-lan-ip> localhost 127.0.0.1
+```
+
+`teleop` picks up `cert.pem` and `key.pem` from the server directory
+automatically. Then install mkcert's root CA on the phone so it trusts the
+certificate — otherwise the phone shows a warning and WebXR still refuses.
+
+Note the port is **4443**, not 5000.
+
+### iPhone
+
+Safari's WebXR support is limited. Install **XR Browser** or **WebXR Viewer**
+from the App Store and open the URL there.
+
+---
+
+## Testing without a phone
+
+The bridge's mapping maths runs with no phone and no robot:
+
+```bash
+python3 xr/mira_xr_bridge.py --self-test
+```
+
+Checks that a level phone maps to centre, that rotation moves the right joint,
+that extreme angles clamp inside the configured span, that rate limiting holds,
+and that tracking is relative to where you grabbed rather than absolute.
+
+For the full loop you do need a real phone — WebXR pose comes from the device's
+own sensors and cannot be faked from the server side.
