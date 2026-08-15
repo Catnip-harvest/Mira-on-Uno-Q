@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Team JQK logo</title>
+  <desc id="desc">A minimal JQK monogram with a camera-aperture Q and robotic joint details.</desc>
+
+  <path fill="#101828" d="M80 40h352l40 40v352l-40 40H80l-40-40V80z"/>
+  <path fill="none" stroke="#19B8C4" stroke-width="12" d="M84 58h344l26 26v344l-26 26H84l-26-26V84z"/>
+
+  <!-- J: articulated robot-arm silhouette -->
+  <path fill="none" stroke="#FFFFFF" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" d="M92 166h82v112c0 38-22 64-58 64-27 0-45-14-51-38"/>
+  <circle cx="174" cy="166" r="12" fill="#19B8C4"/>
+  <circle cx="174" cy="278" r="12" fill="#19B8C4"/>
+
+  <!-- Q: camera lens and aperture -->
+  <circle cx="269" cy="251" r="82" fill="none" stroke="#FFFFFF" stroke-width="25"/>
+  <circle cx="269" cy="251" r="56" fill="#19B8C4"/>
+  <path fill="#101828" d="M269 211l35 20v40l-35 20-35-20v-40z"/>
+  <path fill="none" stroke="#FFFFFF" stroke-width="25" stroke-linecap="round" d="M314 309l35 35"/>
+
+  <!-- K -->
+  <path fill="none" stroke="#FFFFFF" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" d="M373 166v176m3-88l70-88m-70 88l72 88"/>
+
+  <!-- Playing-card corner nod -->
+  <path fill="#19B8C4" d="M84 84h38v12H96v26H84zm344 344h-38v-12h26v-26h12z"/>
+</svg>
