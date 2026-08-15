@@ -15,3 +15,4 @@ config.json
 !ml/**/*.safetensors
 outputs/
 checkpoints/
+.env.local

@@ -1,0 +1,238 @@
+<!-- @dsCard group="Layouts" -->
+<title>Mira on UNO Q — Team JQK poster</title>
+<style>
+  :root{
+    --paper:#F3F2ED; --paper-2:#EBEAE3; --ink:#20242A; --mut:#6F7377;
+    --line:#B9BAB2; --line-soft:#D6D5CD; --red:#BE1E2D; --red-soft:#F3E2E1;
+    --disp:Futura,'Avenir Next','Trebuchet MS',sans-serif;
+    --body:Charter,Georgia,'Times New Roman',serif;
+    --mono:Menlo,'SF Mono',Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0}
+  html,body{background:#DAD9D2}
+  @page{size:13.333in 7.5in;margin:0}
+  body{display:grid;place-items:center;min-height:100vh;padding:16px;overflow-x:auto}
+  @media print{body{padding:0;min-height:0;display:block;background:var(--paper)}}
+
+  .sheet{width:1280px;height:720px;background:var(--paper);color:var(--ink);
+    font-family:var(--body);position:relative;flex:none;
+    box-shadow:0 2px 24px rgba(32,36,42,.18)}
+  @media print{.sheet{box-shadow:none;break-inside:avoid}}
+
+  /* playing-card double frame */
+  .frame{position:absolute;inset:12px;border:2px solid var(--ink);pointer-events:none}
+  .frame::before{content:'';position:absolute;inset:4px;border:1px solid var(--ink)}
+
+  /* corner indices */
+  .ix{position:absolute;font-family:var(--disp);font-weight:700;font-size:21px;
+    line-height:1;text-align:center;letter-spacing:.02em}
+  .ix span{display:block;font-size:15px;margin-top:1px}
+  .ix.tl{top:26px;left:26px}
+  .ix.br{bottom:26px;right:26px;transform:rotate(180deg)}
+  .ix .r{color:var(--red)}
+
+  .pad{position:absolute;inset:30px 56px;display:grid;
+    grid-template-rows:96px 1fr 92px 24px;gap:14px}
+
+  /* ---------- title block: patent header ---------- */
+  header{display:grid;grid-template-columns:88px 1fr auto;gap:20px;align-items:center;
+    border-bottom:2px solid var(--ink);padding:0 4px 12px}
+  header svg{width:82px;height:82px}
+  h1{font-family:var(--disp);font-weight:700;font-size:47px;line-height:1;letter-spacing:.015em}
+  h1 small{font-family:var(--body);font-style:italic;font-weight:400;font-size:21px;letter-spacing:0;margin-left:8px}
+  .tag{font-size:16.5px;font-style:italic;color:var(--mut);margin-top:5px}
+  .stamp{justify-self:end;text-align:right;font-family:var(--mono);font-size:10.5px;
+    line-height:1.75;color:var(--ink);letter-spacing:.02em}
+  .stamp b{font-family:var(--disp);font-size:19px;letter-spacing:.1em;display:block;font-weight:700}
+  .stamp .no{color:var(--red)}
+
+  /* ---------- middle: three columns ---------- */
+  .mid{display:grid;grid-template-columns:300px 1fr 296px;gap:24px;min-height:0}
+  .rule-h{font-family:var(--disp);font-weight:700;font-size:13.5px;letter-spacing:.18em;
+    border-bottom:1px solid var(--ink);padding-bottom:5px;margin-bottom:9px}
+  .rule-h em{font-style:normal;color:var(--red)}
+  .col p{font-size:14.5px;line-height:1.42}
+  .col p+.rule-h{margin-top:14px}
+  .col .footnote{font-style:italic;color:var(--mut)}
+
+  /* photo placeholder — affixed print */
+  .photo{margin-top:14px;border:1px dashed var(--mut);background:var(--paper-2);
+    height:128px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+    font-family:var(--mono);font-size:10.5px;color:var(--mut);text-align:center;letter-spacing:.04em}
+  .photo b{font-family:var(--disp);font-size:12px;letter-spacing:.14em;color:var(--ink)}
+
+  /* patent figure */
+  .fig{display:flex;flex-direction:column;min-height:0}
+  .fig-title{font-family:var(--disp);font-weight:700;font-size:13.5px;letter-spacing:.18em;
+    text-align:center;border-bottom:1px solid var(--ink);padding-bottom:5px;margin-bottom:4px}
+  .fig svg{flex:1;min-height:0;width:100%}
+  .legend{display:grid;grid-template-columns:1fr 1fr;gap:1px 18px;
+    font-family:var(--mono);font-size:10.5px;line-height:1.55;color:var(--ink);margin-top:4px}
+  .legend i{font-style:normal;color:var(--red)}
+
+  /* status ledger */
+  table{border-collapse:collapse;width:100%;font-family:var(--mono);font-size:12px}
+  td{padding:5px 0;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  td:last-child{text-align:right;white-space:nowrap;letter-spacing:.03em}
+  .ok{color:var(--ink);font-weight:700} .wip{color:var(--red);font-weight:700} .plan{color:var(--mut)}
+  .nums{margin-top:12px;border:1px solid var(--ink);display:grid;grid-template-columns:1fr 1fr 1fr}
+  .nums div{padding:8px 4px;text-align:center;border-right:1px solid var(--line-soft)}
+  .nums div:nth-child(3n){border-right:0}
+  .nums div:nth-child(-n+3){border-bottom:1px solid var(--line-soft)}
+  .nums b{display:block;font-family:var(--disp);font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}
+  .nums span{font-family:var(--mono);font-size:9px;color:var(--mut);letter-spacing:.06em}
+
+  /* ---------- safety band ---------- */
+  .safety{display:grid;grid-template-columns:44px 1fr 96px;align-items:stretch;
+    border:2px solid var(--red);background:var(--red-soft)}
+  .stripes{background:repeating-linear-gradient(135deg,var(--red) 0 10px,var(--red-soft) 10px 20px)}
+  .safety .body{padding:9px 16px;display:flex;flex-direction:column;justify-content:center;gap:3px}
+  .safety .head{font-family:var(--disp);font-weight:700;font-size:15px;letter-spacing:.1em;color:var(--red)}
+  .safety p{font-size:13.5px;line-height:1.35}
+  .safety .rule{font-family:var(--mono);font-size:11px;color:var(--ink)}
+  .safety .rule i{font-style:normal;color:var(--red);font-weight:700}
+  .qr{border-left:2px solid var(--red);display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:3px;font-family:var(--mono);font-size:8.5px;color:var(--mut);text-align:center;padding:6px;background:var(--paper)}
+  .qr .box{width:52px;height:52px;border:1px dashed var(--mut)}
+
+  footer{display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:11px;color:var(--mut);letter-spacing:.04em;padding:0 4px}
+  footer b{color:var(--ink);font-weight:500}
+</style>
+
+<div class="sheet">
+  <div class="frame"></div>
+  <div class="ix tl">J<span class="r">♥</span></div>
+  <div class="ix br">K<span>♠</span></div>
+
+  <div class="pad">
+
+    <header>
+      <svg role="img" aria-label="Team JQK eye-in-hand logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <g stroke="#20242A" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M184 218L112 146L82 176L128 272L184 310"/>
+    <path d="M328 218L400 146L430 176L384 272L328 310"/>
+    <path d="M180 214L152 122L188 108L228 190"/>
+    <path d="M332 214L360 122L324 108L284 190"/>
+    <path d="M184 310L184 390L328 390L328 310"/>
+    <path d="M256 176L326 216L326 296L256 336L186 296L186 216Z" fill="#F3F2ED"/>
+    <circle cx="256" cy="256" r="48"/>
+    <circle cx="256" cy="256" r="22"/>
+  </g>
+  <circle cx="256" cy="256" r="9" fill="#BE1E2D"/>
+</svg>
+      <div>
+        <h1>MIRA<small>robotic camera-inspection assistant</small></h1>
+        <div class="tag">An arm that inspects the physical world — steered from a phone in XR, fully offline.</div>
+      </div>
+      <div class="stamp">
+        <b>TEAM JQK</b>
+        QUALCOMM HACK CHALLENGE<br>
+        FINALS · 2026 · <span class="no">SHEET 1 OF 1</span><br>
+        PLATFORM: ARDUINO UNO Q
+      </div>
+    </header>
+
+    <div class="mid">
+      <div class="col">
+        <div class="rule-h">1 · THE PRODUCT</div>
+        <p>An SO-101 robot arm carries a camera. You steer it from a phone in XR;
+           it scans, inspects, records and replays trajectories over real objects.</p>
+        <div class="rule-h">2 · THE POINT</div>
+        <p>Close-up inspection with no cloud, no GPU, no connectivity — every frame stays
+           on the 2&nbsp;GB board. <span class="footnote">Private by physics, not by policy.</span></p>
+        <div class="photo">
+          <b>PHOTOGRAPH № 1</b>
+          team at the rig — to be affixed<br>(awaiting asset from team)
+        </div>
+      </div>
+
+      <div class="fig">
+        <div class="fig-title">FIG. 1 — SIGNAL PATH</div>
+        <svg viewBox="0 0 560 300" aria-label="System diagram: phone to board to arm to interlock">
+          <g stroke="#20242A" stroke-width="2" fill="none">
+            <rect x="28" y="22" width="74" height="118" rx="8"/>
+            <rect x="40" y="36" width="50" height="78" rx="2"/>
+            <circle cx="65" cy="126" r="5"/>
+            <rect x="216" y="42" width="150" height="86" rx="4"/>
+            <rect x="228" y="54" width="54" height="30" rx="2"/>
+            <rect x="292" y="54" width="60" height="30" rx="2"/>
+            <path d="M232 128v-14m12 14v-14m12 14v-14m12 14v-14"/>
+            <circle cx="452" cy="216" r="16"/>
+            <path d="M452 200 452 148 500 116"/>
+            <circle cx="452" cy="148" r="9"/>
+            <path d="M500 116l30 18"/>
+            <rect x="522" y="120" width="30" height="24" rx="3" transform="rotate(32 537 132)"/>
+            <path d="M420 232h64"/>
+            <rect x="404" y="228" width="112" height="42" rx="3"/>
+            <rect x="216" y="212" width="118" height="58" rx="4"/>
+            <path d="M240 236h70m-70 14h48" stroke-width="1.5"/>
+          </g>
+          <g stroke="#20242A" stroke-width="1.6" fill="none">
+            <path d="M104 80 C 150 80 170 84 214 84" stroke-dasharray="6 5"/>
+            <path d="M366 86 C 400 92 420 110 442 136"/>
+            <path d="M334 240 L 402 246" stroke-dasharray="2 4"/>
+            <path d="M290 130 L 276 210"/>
+          </g>
+          <g fill="#BE1E2D" font-family="Menlo,monospace" font-size="15" font-weight="bold">
+            <text x="60" y="16">1</text><text x="284" y="34">2</text>
+            <text x="486" y="100">3</text><text x="268" y="292">4</text>
+          </g>
+          <g stroke="#BE1E2D" stroke-width="1.2" fill="none">
+            <path d="M65 20v16M289 36v6M482 104l-14 12M273 288v-14"/>
+          </g>
+          <g fill="#6F7377" font-family="Menlo,monospace" font-size="10.5">
+            <text x="122" y="50">Wi-Fi · board is AP</text>
+            <text x="382" y="158">USB serial · 1 Mbaud</text>
+            <text x="344" y="205">12 V rail —</text>
+            <text x="344" y="218" fill="#BE1E2D">relay-gated</text>
+          </g>
+        </svg>
+        <div class="legend">
+          <div><i>1</i> phone — WebXR teleop UI</div>
+          <div><i>3</i> SO-101 arm · wrist camera</div>
+          <div><i>2</i> UNO Q — capture · control · server</div>
+          <div><i>4</i> STM32 interlock — gates 12&nbsp;V rail</div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="rule-h">3 · STATUS LEDGER</div>
+        <table>
+          <tr><td>100 Hz servo control</td><td class="ok">✓ working</td></tr>
+          <tr><td>Camera capture</td><td class="ok">✓ working</td></tr>
+          <tr><td>Trajectory replay</td><td class="ok">✓ working</td></tr>
+          <tr><td>Servo-power interlock</td><td class="ok">✓ working</td></tr>
+          <tr><td>XR teleop (WebXR)</td><td class="wip">◐ in&nbsp;progress</td></tr>
+          <tr><td>3D reconstruction</td><td class="plan">· planned</td></tr>
+          <tr><td>Voice control</td><td class="plan">· planned</td></tr>
+        </table>
+        <div class="nums" aria-label="key numbers">
+          <div><b>2 GB</b><span>RAM TOTAL</span></div>
+          <div><b>0</b><span>GPU·CLOUD</span></div>
+          <div><b>100%</b><span>ON-DEVICE</span></div>
+          <div><b>6</b><span>SERVOS</span></div>
+          <div><b>2</b><span>CAMERAS</span></div>
+          <div><b>1</b><span>RELAY</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="safety">
+      <div class="stripes"></div>
+      <div class="body">
+        <div class="head">NOTICE — SAFETY IS HARDWARE</div>
+        <p>Cutting board power does <b>not</b> stop the arm; servos freeze rigid. An STM32 relay gates the
+           12&nbsp;V servo rail — Linux cannot override it.</p>
+        <div class="rule">heartbeat stale → <i>rail drops</i> · E-stop opens → <i>rail drops</i> · corrupt frame → <i>rail drops</i> · faults latch until a human resets</div>
+      </div>
+      <div class="qr"><div class="box"></div>QR — demo video<br>(pending)</div>
+    </div>
+
+    <footer>
+      <span><b>github.com/Catnip-harvest/Mira-on-Uno-Q</b></span>
+      <span>drafted &amp; built by Team JQK · runs with the router unplugged</span>
+    </footer>
+
+  </div>
+</div>

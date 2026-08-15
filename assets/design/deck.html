@@ -1,0 +1,231 @@
+<!-- @dsCard group="Layouts" -->
+<title>Mira on UNO Q — Team JQK pitch deck</title>
+<style>
+  :root{
+    --paper:#F3F2ED; --paper-2:#EBEAE3; --ink:#20242A; --mut:#6F7377;
+    --line:#B9BAB2; --line-soft:#D6D5CD; --red:#BE1E2D; --red-soft:#F3E2E1;
+    --disp:Futura,'Avenir Next','Trebuchet MS',sans-serif;
+    --body:Charter,Georgia,'Times New Roman',serif;
+    --mono:Menlo,'SF Mono',Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0}
+  html,body{background:#DAD9D2}
+  @page{size:13.333in 7.5in;margin:0}
+  body{display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px;overflow-x:auto}
+  @media print{body{padding:0;gap:0;display:block;background:var(--paper)}}
+
+  .slide{width:1280px;height:720px;background:var(--paper);color:var(--ink);font-family:var(--body);
+    position:relative;flex:none;box-shadow:0 2px 24px rgba(32,36,42,.18)}
+  @media print{.slide{box-shadow:none;page-break-after:always;break-inside:avoid}}
+  .frame{position:absolute;inset:12px;border:2px solid var(--ink);pointer-events:none}
+  .frame::before{content:'';position:absolute;inset:4px;border:1px solid var(--ink)}
+  .ix{position:absolute;font-family:var(--disp);font-weight:700;font-size:19px;line-height:1;text-align:center}
+  .ix span{display:block;font-size:14px;margin-top:1px}
+  .ix.tl{top:26px;left:26px}
+  .ix.br{bottom:26px;right:26px;transform:rotate(180deg)}
+  .ix .r{color:var(--red)}
+
+  .pad{position:absolute;inset:54px 72px}
+  .kick{font-family:var(--mono);font-size:12.5px;letter-spacing:.2em;color:var(--red)}
+  h2{font-family:var(--disp);font-weight:700;font-size:45px;line-height:1.04;margin:8px 0 0;
+     text-wrap:balance;letter-spacing:.005em}
+  .headrule{border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:26px}
+  .foot{position:absolute;left:72px;right:72px;bottom:24px;display:flex;justify-content:space-between;
+    font-family:var(--mono);font-size:10.5px;color:var(--mut);letter-spacing:.05em}
+
+  .cols{display:grid;grid-template-columns:1fr 440px;gap:44px;align-items:start}
+  .cols.wide{grid-template-columns:minmax(0,760px)}
+
+  .item{margin-bottom:20px}
+  .item .h{font-family:var(--disp);font-weight:700;font-size:19px;letter-spacing:.06em}
+  .item .h em{font-style:normal;color:var(--red)}
+  .item p{font-size:17.5px;line-height:1.5;margin-top:4px;max-width:62ch}
+  .big{font-size:20px;line-height:1.5}
+  .big b{color:var(--red)}
+
+  .panel{border:2px solid var(--ink);padding:20px 24px;background:var(--paper)}
+  .panel .kick{color:var(--ink)}
+  .panel.red{border-color:var(--red);background:var(--red-soft)}
+  .panel.red .kick{color:var(--red)}
+
+  .stack{display:flex;flex-direction:column;margin-top:12px}
+  .n{border:1px solid var(--ink);padding:8px 12px;text-align:center;background:var(--paper)}
+  .n .t{font-family:var(--disp);font-weight:700;font-size:15.5px;letter-spacing:.04em}
+  .n .s{font-family:var(--mono);font-size:10px;color:var(--mut);margin-top:2px}
+  .n.safe{border-color:var(--red)} .n.safe .t{color:var(--red)}
+  .lk{font-family:var(--mono);font-size:10px;color:var(--mut);text-align:center;padding:5px 0;letter-spacing:.03em}
+  .lk i{font-style:normal;color:var(--red)}
+
+  .rules{font-family:var(--mono);font-size:13.5px;line-height:2;margin-top:10px}
+  .rules i{font-style:normal;color:var(--red);font-weight:700}
+
+  .media{border:1px dashed var(--mut);background:var(--paper-2);display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:6px;font-family:var(--mono);font-size:11px;
+    color:var(--mut);text-align:center;letter-spacing:.04em;padding:12px}
+  .media b{font-family:var(--disp);font-size:13px;letter-spacing:.14em;color:var(--ink)}
+
+  .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .center svg{width:170px;height:170px;margin-bottom:28px}
+  .center h1{font-family:var(--disp);font-weight:700;font-size:100px;line-height:.95;letter-spacing:.01em}
+  .center .sub{font-size:24px;font-style:italic;margin-top:14px}
+  .center .who{font-family:var(--mono);font-size:12.5px;color:var(--mut);margin-top:24px;letter-spacing:.1em}
+  .center h3{font-family:var(--disp);font-weight:700;font-size:54px;text-wrap:balance;max-width:20ch}
+  .center .echo{font-size:25px;font-style:italic;color:var(--red);margin-top:12px}
+</style>
+
+<!-- 1 · title -->
+<section class="slide">
+  <div class="frame"></div>
+  <div class="ix tl">J<span class="r">♥</span></div><div class="ix br">K<span>♠</span></div>
+  <div class="center">
+    <svg role="img" aria-label="Team JQK eye-in-hand logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <g stroke="#20242A" stroke-width="22" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M184 218L112 146L82 176L128 272L184 310"/>
+    <path d="M328 218L400 146L430 176L384 272L328 310"/>
+    <path d="M180 214L152 122L188 108L228 190"/>
+    <path d="M332 214L360 122L324 108L284 190"/>
+    <path d="M184 310L184 390L328 390L328 310"/>
+    <path d="M256 176L326 216L326 296L256 336L186 296L186 216Z" fill="#F3F2ED"/>
+    <circle cx="256" cy="256" r="48"/>
+    <circle cx="256" cy="256" r="22"/>
+  </g>
+  <circle cx="256" cy="256" r="9" fill="#BE1E2D"/>
+</svg>
+    <h1>MIRA</h1>
+    <div class="sub">a robotic camera-inspection assistant on the Arduino UNO Q</div>
+    <div class="who">TEAM JQK · QUALCOMM HACK CHALLENGE 2026 · OFFLINE — PRIVATE — HARDWARE-SAFE</div>
+  </div>
+</section>
+
+<!-- 2 · team -->
+<section class="slide">
+  <div class="frame"></div>
+  <div class="ix tl">J<span class="r">♥</span></div><div class="ix br">K<span>♠</span></div>
+  <div class="pad">
+    <div class="headrule"><div class="kick">01 · WHO WE ARE</div><h2>Team JQK</h2></div>
+    <div class="cols">
+      <div>
+        <div class="item"><div class="h">FIVE STUDENTS, ONE ARM.</div>
+          <p>We wanted a robot arm to do something real — not just wave at the camera.</p></div>
+        <div class="item"><div class="h">ROLES.</div>
+          <p>Firmware &amp; safety interlock · servo control &amp; drivers · XR teleoperation ·
+             computer vision &amp; ML · product &amp; demo.</p></div>
+        <div class="item"><div class="h">ONE RULE WE BUILD BY.</div>
+          <p class="big"><b>Every feature must run with the Wi-Fi router unplugged.</b></p></div>
+      </div>
+      <div class="media" style="height:340px">
+        <b>PHOTOGRAPH — THE TEAM</b>
+        five of us + the rig<br>(drop in when captured)
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>TEAM JQK — MIRA ON UNO Q</span><span>2 / 6</span></div>
+</section>
+
+<!-- 3 · problem & product -->
+<section class="slide">
+  <div class="frame"></div>
+  <div class="ix tl">J<span class="r">♥</span></div><div class="ix br">K<span>♠</span></div>
+  <div class="pad">
+    <div class="headrule"><div class="kick">02 · PROBLEM → PRODUCT</div>
+      <h2>Close-up inspection is manual, hazardous, or cloud-bound</h2></div>
+    <div class="cols">
+      <div>
+        <div class="item"><div class="h">PROBLEM.</div>
+          <p>Inspecting objects up close means hands, ladders or expensive rigs — and the smart-camera
+             products that exist stream your video to someone else’s cloud.</p></div>
+        <div class="item"><div class="h">PRODUCT.</div>
+          <p>Mira: an SO-101 arm carries a camera you steer from a phone in XR.
+             It scans, inspects, records and replays trajectories.</p></div>
+        <div class="item"><div class="h">THE TWIST.</div>
+          <p>Control, capture and the UI itself run on one 2&nbsp;GB UNO Q.
+             No GPU, no cloud — nothing leaves the device.</p></div>
+      </div>
+      <div class="panel">
+        <div class="kick">FIG. 2 — THE LOOP</div>
+        <div class="stack">
+          <div class="n"><div class="t">PHONE — WebXR UI</div></div>
+          <div class="lk">Wi-Fi · the board is the access point</div>
+          <div class="n"><div class="t">UNO Q — QRB2210 · DEBIAN</div>
+            <div class="s">capture · 100 Hz control · web server</div></div>
+          <div class="lk">USB serial · 1 Mbaud</div>
+          <div class="n"><div class="t">SO-101 ARM + WRIST CAM</div></div>
+          <div class="lk"><i>12 V rail — relay-gated</i></div>
+          <div class="n safe"><div class="t">STM32 SAFETY INTERLOCK</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>TEAM JQK — MIRA ON UNO Q</span><span>3 / 6</span></div>
+</section>
+
+<!-- 4 · features & demo -->
+<section class="slide">
+  <div class="frame"></div>
+  <div class="ix tl">J<span class="r">♥</span></div><div class="ix br">K<span>♠</span></div>
+  <div class="pad">
+    <div class="headrule"><div class="kick">03 · FEATURES &amp; DEMO</div><h2>What you will see today</h2></div>
+    <div class="cols">
+      <div>
+        <div class="item"><div class="h">WORKING.</div>
+          <p>100 Hz servo control · camera capture · trajectory record &amp; replay ·
+             fail-safe servo-power interlock.</p></div>
+        <div class="item"><div class="h"><em>IN PROGRESS.</em></div>
+          <p>XR teleoperation from an Android phone (WebXR + ARCore).</p></div>
+        <div class="item"><div class="h">DEMO FLOW.</div>
+          <p>Arm the interlock → steer from the phone → replay the scan →
+             pull the heartbeat, watch the rail drop.</p></div>
+        <div class="media" style="height:120px;margin-top:6px">
+          <b>DEMO STILLS / VIDEO</b>
+          screen-record + rig footage — pending from team
+        </div>
+      </div>
+      <div class="panel red">
+        <div class="kick">NOTICE — SAFETY IS A FEATURE</div>
+        <p class="big" style="font-size:16.5px;margin-top:10px">Board power-off does <b>not</b> stop the arm —
+           servos freeze rigid. So the MCU alone gates the 12&nbsp;V rail:</p>
+        <div class="rules">
+          heartbeat stale → <i>rail drops</i><br>
+          E-stop opens → <i>rail drops</i><br>
+          corrupt frame → <i>rail drops</i><br>
+          faults latch → <i>a human resets</i>
+        </div>
+        <p style="font-size:15.5px;margin-top:10px"><b style="color:var(--red)">Linux cannot override it. We demo this live.</b></p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>TEAM JQK — MIRA ON UNO Q</span><span>4 / 6</span></div>
+</section>
+
+<!-- 5 · next plan -->
+<section class="slide">
+  <div class="frame"></div>
+  <div class="ix tl">J<span class="r">♥</span></div><div class="ix br">K<span>♠</span></div>
+  <div class="pad">
+    <div class="headrule"><div class="kick">04 · WHAT’S NEXT</div><h2>From teleop to autonomy — still offline</h2></div>
+    <div class="cols wide">
+      <div>
+        <div class="item"><div class="h">NOW → HACK DAY.</div>
+          <p>Finish XR teleop · capture demo footage · harden the USB boot-order workaround.</p></div>
+        <div class="item"><div class="h">NEXT MONTH.</div>
+          <p>On-device 3D reconstruction (visual hull) from arm-swept captures ·
+             voice control with on-device speech-to-text.</p></div>
+        <div class="item"><div class="h">AFTER.</div>
+          <p>LeRobot-format datasets from replayed trajectories → train small imitation policies that run
+             on the QRB2210. <b style="color:var(--red)">The arm learns the inspection, then does it alone.</b></p></div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>TEAM JQK — MIRA ON UNO Q</span><span>5 / 6</span></div>
+</section>
+
+<!-- 6 · close -->
+<section class="slide">
+  <div class="frame"></div>
+  <div class="ix tl">J<span class="r">♥</span></div><div class="ix br">K<span>♠</span></div>
+  <div class="center">
+    <h3>Mira — inspection that works anywhere.</h3>
+    <div class="echo">Because it never needed anywhere else.</div>
+    <div class="who">github.com/Catnip-harvest/Mira-on-Uno-Q · TEAM JQK · QUESTIONS WELCOME</div>
+  </div>
+</section>
