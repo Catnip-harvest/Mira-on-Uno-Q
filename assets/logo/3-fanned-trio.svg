@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Team JQK Fanned Trio Logo</title>
+  <desc id="desc">Three fanned playing cards forming a subtle robotic gripper, with geometric J and K letters and a camera lens forming the Q.</desc>
+
+  <!-- Left card: J -->
+  <g transform="rotate(-18 256 420)">
+    <path d="M181 90H331Q351 90 351 110V400Q351 420 331 420H181Q161 420 161 400V110Q161 90 181 90Z"
+          fill="#F3F2ED" stroke="#20242A" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M184 142H230V212Q230 250 194 250Q166 250 166 222V207H190V220Q190 230 199 230Q208 230 208 216V164H184Z"
+          fill="#20242A"/>
+    <path d="M177 276L190 289L177 302L164 289Z" fill="#BE1E2D"/>
+  </g>
+
+  <!-- Right card: K -->
+  <g transform="rotate(18 256 420)">
+    <path d="M181 90H331Q351 90 351 110V400Q351 420 331 420H181Q161 420 161 400V110Q161 90 181 90Z"
+          fill="#F3F2ED" stroke="#20242A" stroke-width="10" stroke-linejoin="round"/>
+    <path d="M282 142H304V183L330 142H357L322 195L360 250H332L304 207V250H282Z"
+          fill="#20242A"/>
+    <path d="M335 276L348 289L335 302L322 289Z" fill="#BE1E2D"/>
+  </g>
+
+  <!-- Center card: camera-lens Q -->
+  <path d="M181 90H331Q351 90 351 110V400Q351 420 331 420H181Q161 420 161 400V110Q161 90 181 90Z"
+        fill="#F3F2ED" stroke="#20242A" stroke-width="10" stroke-linejoin="round"/>
+
+  <!-- Lens body -->
+  <circle cx="256" cy="239" r="76" fill="#F3F2ED" stroke="#20242A" stroke-width="11"/>
+  <circle cx="256" cy="239" r="56" fill="none" stroke="#20242A" stroke-width="8"/>
+  <circle cx="256" cy="239" r="39" fill="none" stroke="#BE1E2D" stroke-width="10"/>
+
+  <!-- Hex-nut iris -->
+  <path d="M256 205L286 222V256L256 273L226 256V222Z"
+        fill="#BE1E2D" stroke="#20242A" stroke-width="7" stroke-linejoin="round"/>
+  <circle cx="256" cy="239" r="17" fill="#20242A"/>
+
+  <!-- Iris blades -->
+  <path d="M256 205L256 222M286 222L271 231M286 256L271 247M256 273L256 256M226 256L241 247M226 222L241 231"
+        fill="none" stroke="#F3F2ED" stroke-width="5" stroke-linecap="square"/>
+
+  <!-- Q tail -->
+  <path d="M302 292L334 324" fill="none" stroke="#20242A" stroke-width="13" stroke-linecap="square"/>
+
+  <!-- Center suit pip / status accent -->
+  <path d="M256 342L270 356L256 370L242 356Z" fill="#BE1E2D"/>
+</svg>
